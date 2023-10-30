@@ -136,17 +136,18 @@ int main(int argc,char** argv){
 //modifications to thread start here
 	thread_count = strtol(argv[3],NULL,10);
 	//thread_count = 4;
+	int thread, i, j;
 	ConvParams* thread_params = (ConvParams*)malloc(thread_count*sizeof(ConvParams));
         pthread_t* thread_handles = (pthread_t*)malloc(thread_count*sizeof(pthread_t));
 	int rows_per_thread = srcImage.height/thread_count;
-        for (int thread=0; thread<thread_count; thread++){
+        for (thread=0; thread<thread_count; thread++){
 		thread_params[thread].srcImage = &srcImage;
 		thread_params[thread].destImage = &destImage;
 		//thread_params[thread].algorithm = algorithms[type];
 		thread_params[thread].startRow = thread*rows_per_thread;
 		thread_params[thread].endRow = (thread== thread_count-1) ? srcImage.height : (thread+1)*rows_per_thread;
-		for (int i=0; i<3; i++){
-			for (int j=0; j<3; j++){
+		for (i=0; i<3; i++){
+			for (j=0; j<3; j++){
 				thread_params[thread].algorithm[i][j] = algorithms[type][i][j];
 			}		
 		}
@@ -157,7 +158,7 @@ int main(int argc,char** argv){
 		        
 }
 
-        for (int thread=0; thread<thread_count; thread++){
+        for (thread=0; thread<thread_count; thread++){
                 pthread_join(thread_handles[thread], NULL);
         }
 
