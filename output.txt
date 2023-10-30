@@ -1,0 +1,21 @@
+Script started on Mon 30 Oct 2023 05:40:38 PM EDT
+]0;malika@login00.darwin:~/CISC372_picProject[?1034h[(ea-cisc372-silber:malika)@login00.darwin CISC372_picProject]$ salloc --ntasks=1 --cpus-per-task=4 --partition=star[Kndard
+salloc: Granted job allocation 4763549
+salloc: Waiting for resource configuration
+salloc: Nodes r1n10 are ready for job
+]0;malika@r1n10.darwin:~/CISC372_picProject[?1034h[malika@r1n10 CISC372_picProject]$ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+]0;malika@r1n10.darwin:~/CISC372_picProject[malika@r1n10 CISC372_picProject]$ srun image3omp2
+Usage: image <filename> <type>
+	where type is one of (edge,sharpen,blur,gauss,emboss,identity)
+srun: error: r1n10: task 0: Exited with exit code 255
+]0;malika@r1n10.darwin:~/CISC372_picProject[malika@r1n10 CISC372_picProject]$ srun image3omp2omp2 pic1.jpg edge
+Took 7 seconds
+]0;malika@r1n10.darwin:~/CISC372_picProject[malika@r1n10 CISC372_picProject]$ ./image2pthreads2 pic1.p jpg edge 4
+Took 7 seconds
+]0;malika@r1n10.darwin:~/CISC372_picProject[malika@r1n10 CISC372_picProject]$ exit
+logout
+salloc: Relinquishing job allocation 4763549
+]0;malika@login00.darwin:~/CISC372_picProject[(ea-cisc372-silber:malika)@login00.darwin CISC372_picProject]$ exit
+exit
+
+Script done on Mon 30 Oct 2023 05:42:39 PM EDT
